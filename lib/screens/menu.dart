@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:myportfolio_mobile/widgets/left_drawer.dart';
+import 'package:myportfolio_mobile/widgets/project_card.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
-  
+
   final String npm = '2506558144';
   final String name = 'Kenaz Shidqi Baswara';
   final String clas = 'KI';
@@ -18,17 +20,19 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'MyPortfolio', 
+          'MyPortfolio',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-          )
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column (
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
@@ -45,7 +49,7 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
-                    child: Text (
+                    child: Text(
                       "Welcome to MyPortfolio Mobile!",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -63,12 +67,12 @@ class MyHomePage extends StatelessWidget {
                     children: items.map((ItemHomepage item) {
                       return ItemCard(item);
                     }).toList(),
-                  )
+                  ),
                 ],
-              )
-            )
-          ]
-        )
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -108,48 +112,4 @@ class ItemHomepage {
   final Color color;
 
   ItemHomepage(this.name, this.icon, this.color);
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
-
-  const ItemCard(this.item, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("You have pressed button ${item.name}!")),
-            );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                const Padding (padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-          )
-        )
-      )
-    );
-  }
 }
