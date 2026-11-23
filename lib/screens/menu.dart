@@ -11,6 +11,7 @@ class MyHomePage extends StatelessWidget {
 
   final List<ItemHomepage> items = [
     ItemHomepage("Look Project", Icons.folder, Colors.blue),
+    ItemHomepage("Add Education", Icons.add_circle, Colors.deepPurple),
     ItemHomepage("Add Project", Icons.add_circle, Colors.cyan),
     ItemHomepage("Logout", Icons.logout, Colors.teal),
   ];
@@ -43,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                 InfoCard(title: 'Class', content: clas),
               ],
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 4.0),
             Center(
               child: Column(
                 children: [
@@ -62,7 +63,8 @@ class MyHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    crossAxisCount: 3,
+                    crossAxisCount: 4, // Fits 4 smaller square cards in one row
+                    childAspectRatio: 1.0, // Increase (e.g., 1.2) to make cards shorter
                     shrinkWrap: true,
                     children: items.map((ItemHomepage item) {
                       return ItemCard(item);
